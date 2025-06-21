@@ -48,12 +48,15 @@ const App = () => {
           setPersons(persons.concat(returnedRecord));
           setNewName('');
           setNewNumber('');
+          setNotification({message: "Added " + newName , type: "success"});
+          setTimeout(() => {
+            setNotification({ message:null, type:null});
+          }, 3000);
+        })
+        .catch(error =>{
+          setNotification({message: error.response.data.error, type: "err"});
         })
       }
-      setNotification({message: "Added " + newName , type: "success"});
-      setTimeout(() => {
-        setNotification({ message:null, type:null});
-      }, 3000);
     }
 
   const deleteRecordOf = (id) => {
